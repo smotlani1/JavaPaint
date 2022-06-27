@@ -50,3 +50,5 @@ public class Main {
         graphics2d.drawRect(7, 8, 210, 410);
     }
 }
+
+//Test
