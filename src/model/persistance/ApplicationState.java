@@ -19,12 +19,15 @@ public class ApplicationState implements IApplicationState {
     private ShapeShadingType activeShapeShadingType;
     private MouseMode activeMouseMode;
 
+    private Point point1;
+
+    private Point point2;
+
     public ApplicationState(IUiModule uiModule) {
         this.uiModule = uiModule;
         this.dialogProvider = new DialogProvider(this);
         setDefaults();
     }
-
     @Override
     public void setActiveShape() {
         activeShapeType = uiModule.getDialogResponse(dialogProvider.getChooseShapeDialog());
@@ -50,6 +53,14 @@ public class ApplicationState implements IApplicationState {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
     }
 
+    public void setPoint1(Point point1) {
+        this.point1 = point1;
+    }
+
+    public void setPoint2(Point point2) {
+        this.point2 = point2;
+    }
+
     @Override
     public ShapeType getActiveShapeType() {
         return activeShapeType;
@@ -73,6 +84,14 @@ public class ApplicationState implements IApplicationState {
     @Override
     public MouseMode getActiveMouseMode() {
         return activeMouseMode;
+    }
+
+    public Point getPoint1() {
+        return point1;
+    }
+
+    public Point getPoint2() {
+        return point2;
     }
 
     private void setDefaults() {
