@@ -3,10 +3,10 @@ package canvas;
 import model.persistance.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-public abstract class MouseModeDraw extends MouseModeAbstract{
+public abstract class MouseModeCommandDraw extends MouseModeCommandAbstract {
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
-    public MouseModeDraw(ApplicationState appState, PaintCanvasBase paintCanvas) {
+    public MouseModeCommandDraw(ApplicationState appState, PaintCanvasBase paintCanvas) {
         super(appState, paintCanvas);
         this.appState = appState;
         this.paintCanvas = paintCanvas;

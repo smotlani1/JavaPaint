@@ -1,7 +1,6 @@
 package model;
-import canvas.MouseModeAbstract;
+import canvas.MouseModeCommandAbstract;
 import canvas.ToolType;
-import canvas.MouseModeDraw;
 import model.persistance.ApplicationState;
 import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
@@ -12,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class clickHandler extends MouseAdapter{
     ApplicationState state;
     PaintCanvasBase paintCanvas;
-    MouseModeAbstract tool;
+    MouseModeCommandAbstract tool;
 
 
     public clickHandler(ApplicationState state, PaintCanvasBase paintCanvas) {

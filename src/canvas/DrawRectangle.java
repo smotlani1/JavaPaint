@@ -5,7 +5,7 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-public class DrawRectangle extends MouseModeDraw {
+public class DrawRectangle extends MouseModeCommandDraw {
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
     public DrawRectangle(ApplicationState appState, PaintCanvasBase paintCanvas) {
