@@ -3,10 +3,16 @@ package canvas;
 import model.persistance.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-public class MouseModeCommandMove extends MouseModeCommandAbstract {
+public class MouseModeCommandMove implements MouseModeCommandInterface {
+
+    ApplicationState appState;
+    PaintCanvasBase paintCanvas;
     public MouseModeCommandMove(ApplicationState appState, PaintCanvasBase paintCanvas) {
-        super(appState, paintCanvas);
+        this.appState = appState;
+        this.paintCanvas = paintCanvas;
     }
+
+
 
     @Override
     public void onMousePressed() {

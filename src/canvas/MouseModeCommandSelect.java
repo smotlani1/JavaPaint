@@ -3,10 +3,14 @@ package canvas;
 import model.persistance.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-public class MouseModeCommandSelect extends MouseModeCommandAbstract {
+public class MouseModeCommandSelect implements MouseModeCommandInterface {
+
+    ApplicationState appState;
+    PaintCanvasBase paintCanvas;
 
     public MouseModeCommandSelect(ApplicationState appState, PaintCanvasBase paintCanvas) {
-        super(appState, paintCanvas);
+        this.appState = appState;
+        this.paintCanvas = paintCanvas;
     }
 
     @Override
@@ -24,4 +28,6 @@ public class MouseModeCommandSelect extends MouseModeCommandAbstract {
         System.out.println("Object Selected");
 
     }
+
+
 }

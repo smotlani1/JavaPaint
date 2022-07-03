@@ -9,10 +9,10 @@ import view.interfaces.PaintCanvasBase;
 //Implementation of Static Factory Method?
 public class ToolType {
 
-    public static MouseModeCommandAbstract getTool(ApplicationState appState, PaintCanvasBase paintCanvas) {
+    public static MouseModeCommandInterface getTool(ApplicationState appState, PaintCanvasBase paintCanvas, History history) {
         if (appState.getActiveMouseMode() == MouseMode.DRAW) {
             ShapeFactory factory = new ShapeFactory();
-            return factory.getShapeToDraw(appState, paintCanvas);
+            return factory.getShapeToDraw(appState, paintCanvas, history);
         }
 
         else if (appState.getActiveMouseMode() == MouseMode.MOVE) {

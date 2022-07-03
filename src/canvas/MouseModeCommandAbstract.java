@@ -15,6 +15,7 @@ public abstract class MouseModeCommandAbstract {
     public abstract void onMousePressed();
     public abstract void onMouseReleased();
     public abstract void onMouseClicked();
+//    public abstract void execute();
 
 
 }
