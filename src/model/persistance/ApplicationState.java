@@ -1,5 +1,7 @@
 package model.persistance;
 
+import canvas.MouseModeCommandDraw;
+import canvas.UndoableCommandInterface;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
@@ -8,6 +10,9 @@ import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
 import view.interfaces.IUiModule;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class ApplicationState implements IApplicationState {
     private final IUiModule uiModule;
@@ -19,8 +24,8 @@ public class ApplicationState implements IApplicationState {
     private ShapeShadingType activeShapeShadingType;
     private MouseMode activeMouseMode;
 
+    public Deque<MouseModeCommandDraw> shapeList = new ArrayDeque<>();
     private Point point1;
-
     private Point point2;
 
     public ApplicationState(IUiModule uiModule) {
@@ -84,6 +89,14 @@ public class ApplicationState implements IApplicationState {
     @Override
     public MouseMode getActiveMouseMode() {
         return activeMouseMode;
+    }
+
+    public void addShapeToShapeList(MouseModeCommandDraw shape) {
+        shapeList.push(shape);
+    }
+
+    public MouseModeCommandDraw removeShape() {
+        return shapeList.pop();
     }
 
     public Point getPoint1() {

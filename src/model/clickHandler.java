@@ -1,8 +1,5 @@
 package model;
-import canvas.History;
-import canvas.MouseModeCommandAbstract;
-import canvas.MouseModeCommandInterface;
-import canvas.ToolType;
+import canvas.*;
 import model.persistance.ApplicationState;
 import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
@@ -15,19 +12,21 @@ public class clickHandler extends MouseAdapter{
     PaintCanvasBase paintCanvas;
     History history;
     MouseModeCommandInterface tool;
+    ShapeList shapeList;
 
 
-    public clickHandler(ApplicationState state, PaintCanvasBase paintCanvas, History history) {
+    public clickHandler(ApplicationState state, PaintCanvasBase paintCanvas, History history, ShapeList shapeList) {
         this.state = state;
         this.paintCanvas = paintCanvas;
         this.history = history;
+        this.shapeList = shapeList;
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        tool = ToolType.getTool(state, paintCanvas, history);
-        tool.onMouseClicked();
+        tool = ToolType.getTool(state, paintCanvas, history, shapeList);
+        tool.execute();
     }
 
     @Override
@@ -35,8 +34,8 @@ public class clickHandler extends MouseAdapter{
         int x = e.getX();
         int y = e.getY();
         state.setPoint1(new Point(x, y));
-        tool = ToolType.getTool(state, paintCanvas, history);
-        tool.onMousePressed();
+//        tool = ToolType.getTool(state, paintCanvas, history);
+//        tool.onMousePressed();
 
     }
 
@@ -45,8 +44,8 @@ public class clickHandler extends MouseAdapter{
         int x = e.getX();
         int y = e.getY();
         state.setPoint2(new Point(x, y));
-        tool = ToolType.getTool(state, paintCanvas, history);
-        tool.onMouseReleased();
+        tool = ToolType.getTool(state, paintCanvas, history, shapeList);
+        tool.execute();
 
     }
 

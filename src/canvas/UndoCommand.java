@@ -10,18 +10,18 @@ public class UndoCommand implements MouseModeCommandInterface{
     }
 
 
+//    @Override
+//    public void onMousePressed() {
+//
+//    }
+//
+//    @Override
+//    public void onMouseReleased() {
+//
+//    }
+
     @Override
-    public void onMousePressed() {
-
-    }
-
-    @Override
-    public void onMouseReleased() {
-
-    }
-
-    @Override
-    public void onMouseClicked() {
+    public void execute() {
         history.pop().unExecute();
 
     }

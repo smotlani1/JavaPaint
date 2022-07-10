@@ -1,6 +1,7 @@
 package main;
 
 import canvas.History;
+import canvas.ShapeList;
 import controller.IJPaintController;
 import controller.JPaintController;
 import model.clickHandler;
@@ -14,7 +15,8 @@ import view.interfaces.IUiModule;
 
 public class Main {
     public static void main(String[] args){
-        PaintCanvasBase paintCanvas = new PaintCanvas();
+        ShapeList shapeList = new ShapeList();
+        PaintCanvasBase paintCanvas = new PaintCanvas(shapeList);
         History history = new History();
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
@@ -22,7 +24,7 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState, history);
         controller.setup();
 
-        clickHandler clickHandler = new clickHandler(appState, paintCanvas, history);
+        clickHandler clickHandler = new clickHandler(appState, paintCanvas, history, shapeList);
         paintCanvas.addMouseListener(clickHandler);
 
 

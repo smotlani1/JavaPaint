@@ -4,27 +4,52 @@ import model.persistance.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
+import model.persistance.Point;
 
 public class DrawRectangle extends MouseModeCommandDraw {
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
-    History history;
-    public DrawRectangle(ApplicationState appState, PaintCanvasBase paintCanvas, History history) {
-        super(appState, paintCanvas, history);
+    Graphics2D graphics2d;
+
+    Point point1;
+
+    Point point2;
+    @Override
+    public void setPoint1(Point point) {
+        this.point1 = point;
+    }
+
+    @Override
+    public void setPoint2(Point point) {
+        this.point2 = point;
+    }
+    public Point getPoint1() {
+        return point1;
+    }
+
+    public Point getPoint2() {
+        return point2;
+    }
+
+    public DrawRectangle(ApplicationState appState, PaintCanvasBase paintCanvas, History history, ShapeList shapeList) {
+        super(appState, paintCanvas, history, shapeList);
         this.appState = appState;
         this.paintCanvas = paintCanvas;
-        this.history = history;
+
+
     }
 
     @Override
     public void draw() {
-        Graphics2D graphics2d = paintCanvas.getGraphics2D();
+        System.out.println("Rectangle drawn");
+        graphics2d = paintCanvas.getGraphics2D();
         graphics2d.setColor(appState.getActivePrimaryColor().getColor());
-        graphics2d.fillRect(appState.getPoint1().getX(), appState.getPoint1().getY(), (appState.getPoint2().getX()-appState.getPoint1().getX()), (appState.getPoint2().getY()-appState.getPoint1().getY()));
+        graphics2d.fillRect(point1.getX(), point1.getY(), (point2.getX()-point1.getX()), (point2.getY()-point1.getY()));
     }
 
-    @Override
-    public void unExecute() {
-        System.out.println("Rectangle draw unexecuted");
-    }
+//    @Override
+//    public void unExecute() {
+//        graphics2d.setColor(Color.white);
+//        graphics2d.fillRect(point1.getX(), point1.getY(), (point2.getX()-point1.getX()), (point2.getY()-point1.getY()));
+//    }
 }
