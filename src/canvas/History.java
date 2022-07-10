@@ -21,7 +21,7 @@ public class History {
 
     public static void push(UndoableCommandInterface cmd) {
         undoStack.push(cmd);
-        redoStack.clear();
+//        redoStack.clear();
     }
 
     public static UndoableCommandInterface pop() {

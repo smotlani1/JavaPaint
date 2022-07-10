@@ -1,16 +1,19 @@
 package canvas;
 
-import model.persistance.ApplicationState;
-import view.interfaces.PaintCanvasBase;
-
 public class UndoCommand implements MouseModeCommandInterface{
     private History history;
     public UndoCommand(History history) {
         this.history = history;
     }
 
+    @Override
+    public void execute() {
+        history.pop().undo();
 
-//    @Override
+    }
+}
+
+    //    @Override
 //    public void onMousePressed() {
 //
 //    }
@@ -20,11 +23,6 @@ public class UndoCommand implements MouseModeCommandInterface{
 //
 //    }
 
-    @Override
-    public void execute() {
-        history.pop().unExecute();
-
-    }
 
 
-}
+

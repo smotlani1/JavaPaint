@@ -1,6 +1,7 @@
 package controller;
 
 import canvas.History;
+import canvas.RedoCommand;
 import canvas.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
@@ -30,5 +31,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> applicationState.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> new UndoCommand(history).execute());
+        uiModule.addEvent(EventName.REDO, () -> new RedoCommand(history).execute());
     }
 }

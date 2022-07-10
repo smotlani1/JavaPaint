@@ -25,8 +25,8 @@ public class clickHandler extends MouseAdapter{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        tool = ToolType.getTool(state, paintCanvas, history, shapeList);
-        tool.execute();
+//        tool = ToolType.getTool(state, paintCanvas, history, shapeList);
+//        tool.execute();
     }
 
     @Override
