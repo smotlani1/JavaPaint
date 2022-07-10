@@ -1,16 +1,46 @@
 package canvas;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
+
+//public class History {
+//    private Deque<UndoableCommandInterface> commands = new ArrayDeque<>();
+//
+//    public void push(UndoableCommandInterface undoableCommand) {
+//        commands.push(undoableCommand);
+//    }
+//
+//    public UndoableCommandInterface pop() {
+//         return commands.pop();
+//    }
+//}
+
 
 public class History {
-    private Deque<UndoableCommandInterface> commands = new ArrayDeque<>();
+    private static final Stack<UndoableCommandInterface> undoStack = new Stack<UndoableCommandInterface>();
+    private static final Stack<UndoableCommandInterface> redoStack = new Stack<UndoableCommandInterface>();
 
-    public void push(UndoableCommandInterface undoableCommand) {
-        commands.push(undoableCommand);
+    public static void push(UndoableCommandInterface cmd) {
+        undoStack.push(cmd);
+        redoStack.clear();
     }
 
-    public UndoableCommandInterface pop() {
-         return commands.pop();
+    public static UndoableCommandInterface pop() {
+        boolean result = !undoStack.empty();
+        if (result) {
+            UndoableCommandInterface c = undoStack.pop();
+            redoStack.push(c);
+            return c;
+        }
+        return null;
+    }
+
+    public static UndoableCommandInterface redo() {
+        boolean result = !redoStack.empty();
+        if (result) {
+            UndoableCommandInterface c = redoStack.pop();
+            undoStack.push(c);
+            return c;
+        }
+        return null;
     }
 }
