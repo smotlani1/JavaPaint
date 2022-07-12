@@ -15,6 +15,7 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
 
     public abstract void setPoint1(Point point);
     public abstract void setPoint2(Point point);
+    public abstract void setColor(Color color);
     public abstract Point getPoint1();
     public abstract Point getPoint2();
 
@@ -30,6 +31,7 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
     public void execute() {
         this.setPoint1(appState.getPoint1());
         this.setPoint2(appState.getPoint2());
+        this.setColor(appState.getActivePrimaryColor().getColor());
         this.draw();
         history.push(this);
         shapeList.addShapeToShapeList(this);

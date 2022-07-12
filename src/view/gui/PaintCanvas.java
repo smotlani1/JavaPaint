@@ -25,7 +25,7 @@ public class PaintCanvas extends PaintCanvasBase {
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D) g;
         graphics2d.setColor(Color.WHITE);
-        graphics2d.fillRect(0,0,1000,1000);
+        graphics2d.fillRect(0,0,10000,10000);
 
         Iterator<MouseModeCommandDraw> it = shapeList.getShapeList().iterator();
         while (it.hasNext()) {
