@@ -45,10 +45,9 @@ public class DrawRectangle extends MouseModeCommandDraw {
 
     @Override
     public void draw() {
-        System.out.println("Rectangle drawn");
         graphics2d = paintCanvas.getGraphics2D();
         graphics2d.setColor(color);
-        graphics2d.fillRect(this.getStartX(), this.getStartY(), this.getWidth(), this.getHeight());
+        graphics2d.fillRect(getStartX(), getStartY(), getWidth(), getHeight());
     }
 
     private int getStartX() {

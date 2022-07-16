@@ -14,10 +14,10 @@ public class ToolType {
             ShapeFactory factory = new ShapeFactory();
             return factory.getShapeToDraw(appState, paintCanvas, history, shapeList);
         }
+        else if (appState.getActiveMouseMode() == MouseMode.SELECT) {
+            return new MouseModeCommandSelect(appState, paintCanvas, shapeList);
+        }
         return null;
-//        else if (appState.getActiveMouseMode() == MouseMode.MOVE) {
-//            return new MouseModeCommandMove(appState, paintCanvas);
-//        }
 //
 //        else return new MouseModeCommandSelect(appState, paintCanvas);
 
