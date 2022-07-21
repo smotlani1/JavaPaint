@@ -17,6 +17,9 @@ public class ToolType {
         else if (appState.getActiveMouseMode() == MouseMode.SELECT) {
             return new MouseModeCommandSelect(appState, paintCanvas, shapeList);
         }
+        else if (appState.getActiveMouseMode() == MouseMode.MOVE) {
+            return new MouseModeCommandMove(appState, paintCanvas);
+        }
         return null;
 //
 //        else return new MouseModeCommandSelect(appState, paintCanvas);

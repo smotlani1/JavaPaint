@@ -12,7 +12,7 @@ public class MouseModeCommandSelect implements MouseModeCommandInterface {
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
     ShapeList shapeList;
-    List<MouseModeCommandDraw> selectedShapes = new ArrayList<>();
+    static List<MouseModeCommandDraw> selectedShapes = new ArrayList<>();
 
     public MouseModeCommandSelect(ApplicationState appState, PaintCanvasBase paintCanvas, ShapeList shapeList) {
         this.appState = appState;
@@ -22,6 +22,7 @@ public class MouseModeCommandSelect implements MouseModeCommandInterface {
 
     @Override
     public void execute() {
+        selectedShapes.clear();
         getSelectedObjects();
 
         if(selectedShapes != null) {
