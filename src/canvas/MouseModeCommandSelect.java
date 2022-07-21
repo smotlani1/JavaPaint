@@ -22,42 +22,32 @@ public class MouseModeCommandSelect implements MouseModeCommandInterface {
 
     @Override
     public void execute() {
-        MouseModeCommandDraw shape = getSelectedObject();
+        getSelectedObjects();
 
-        if(shape != null) {
-            System.out.println(shape);
-            selectedShapes.add(shape);
+        if(selectedShapes != null) {
+            System.out.println(selectedShapes);
         }
         else {
             System.out.println("all objects deselected");
-            selectedShapes.clear();
         }
 
 
     }
 
-    private MouseModeCommandDraw getSelectedObject() {
+    private void getSelectedObjects() {
         Iterator<MouseModeCommandDraw> iterator = shapeList.shapeList.iterator();
+        CollisionDetection collisionDetection = new CollisionDetection(appState.getPoint1(), appState.getPoint2());
 
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
-            if (containsPoint(shape)){
-               return shape;
+            if (collisionDetection.collides(shape)){
+               selectedShapes.add(shape);
             }
         }
-        return null;
+//        return selectedShapes;
     }
 
-    private boolean containsPoint(MouseModeCommandDraw shape){
-        int x1 = appState.getPoint2().getX();
-        int y1 = appState.getPoint2().getY();
 
-        if (x1 >= Math.min(shape.getPoint1().getX(), shape.getPoint2().getX()) && x1 <= Math.max(shape.getPoint1().getX(), shape.getPoint2().getX())) {
-            if (y1 >= Math.min(shape.getPoint1().getY(), shape.getPoint2().getY()) && y1 <= Math.max(shape.getPoint1().getY(), shape.getPoint2().getY()))
-                return true;
-        }
-        return false;
-    }
 
 
 }

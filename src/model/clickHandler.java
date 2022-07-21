@@ -46,6 +46,7 @@ public class clickHandler extends MouseAdapter{
         state.setPoint2(new Point(x, y));
         tool = ToolType.getTool(state, paintCanvas, history, shapeList);
         tool.execute();
+        state.setPoint1(null);
 
     }
 
