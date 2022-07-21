@@ -14,6 +14,7 @@ public class DrawRectangle extends MouseModeCommandDraw {
     Color color;
     Point point1;
     Point point2;
+
     @Override
     public void setPoint1(Point point) {
         this.point1 = point;
@@ -22,6 +23,7 @@ public class DrawRectangle extends MouseModeCommandDraw {
     public void setPoint2(Point point) {
         this.point2 = point;
     }
+
     public Point getPoint1() {
         return point1;
     }

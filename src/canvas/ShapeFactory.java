@@ -11,11 +11,11 @@ public class ShapeFactory extends ShapeFactoryAbstract{
         if (appState.getActiveShapeType() == ShapeType.RECTANGLE) {
             return new DrawRectangle(appState, paintCanvas, history, shapeList);
         }
-//        } else if (appState.getActiveShapeType() == ShapeType.ELLIPSE) {
+//        else if (appState.getActiveShapeType() == ShapeType.ELLIPSE) {
 //            return new DrawEllipse(appState, paintCanvas, history, shapeList);
-//        } else if (appState.getActiveShapeType() == ShapeType.TRIANGLE) {
-//            return new DrawTriangle(appState, paintCanvas, history, shapeList);
-//        }
+        else if (appState.getActiveShapeType() == ShapeType.TRIANGLE) {
+            return new DrawTriangle(appState, paintCanvas, history, shapeList);
+        }
 
         return null;
     }
