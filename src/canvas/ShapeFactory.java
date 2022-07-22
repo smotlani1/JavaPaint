@@ -11,8 +11,9 @@ public class ShapeFactory extends ShapeFactoryAbstract{
         if (appState.getActiveShapeType() == ShapeType.RECTANGLE) {
             return new CreateRectangle(appState, paintCanvas, history, shapeList);
         }
-//        else if (appState.getActiveShapeType() == ShapeType.ELLIPSE) {
-//            return new DrawEllipse(appState, paintCanvas, history, shapeList);
+        else if (appState.getActiveShapeType() == ShapeType.ELLIPSE) {
+            return new CreateEllipse(appState, paintCanvas, history, shapeList);
+        }
         else if (appState.getActiveShapeType() == ShapeType.TRIANGLE) {
             return new CreateTriangle(appState, paintCanvas, history, shapeList);
         }
