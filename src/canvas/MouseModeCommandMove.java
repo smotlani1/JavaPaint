@@ -4,12 +4,16 @@ import model.persistance.ApplicationState;
 import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class MouseModeCommandMove implements UndoableCommandInterface {
 
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
+    List<MouseModeCommandDraw> selectedShapes = new ArrayList<>();
     int xDiff;
     int yDiff;
 
@@ -18,6 +22,7 @@ public class MouseModeCommandMove implements UndoableCommandInterface {
         this.paintCanvas = paintCanvas;
         this.xDiff = appState.getPoint2().getX() - appState.getPoint1().getX();
         this.yDiff = appState.getPoint2().getY() - appState.getPoint1().getY();
+        selectedShapes.addAll(MouseModeCommandSelect.selectedShapes);
     }
 
 
@@ -31,7 +36,7 @@ public class MouseModeCommandMove implements UndoableCommandInterface {
     }
 
     private void transpose(int x, int y) {
-        Iterator<MouseModeCommandDraw> iterator = MouseModeCommandSelect.selectedShapes.iterator();
+        Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shape.setPoint1(new Point((shape.getPoint1().getX() + x), (shape.getPoint1().getY()) + y));
@@ -40,7 +45,7 @@ public class MouseModeCommandMove implements UndoableCommandInterface {
     }
     @Override
     public void undo() {
-        Iterator<MouseModeCommandDraw> iterator = MouseModeCommandSelect.selectedShapes.iterator();
+        Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shape.setPoint1(new Point((shape.getPoint1().getX() - xDiff), (shape.getPoint1().getY()) -yDiff));
