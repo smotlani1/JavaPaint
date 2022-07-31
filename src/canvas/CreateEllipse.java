@@ -91,6 +91,11 @@ public class CreateEllipse extends MouseModeCommandDraw{
 
     @Override
     public MouseModeCommandDraw copy() {
-        return null;
+        var copy = new CreateEllipse(appState, paintCanvas, history, shapeList);
+        copy.color = this.color;
+        copy.secondaryColor = this.secondaryColor;
+        copy.state = this.state;
+        copy.shadingType = this.shadingType;
+        return copy;
     }
 }

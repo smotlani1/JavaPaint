@@ -10,7 +10,7 @@ public class Paste implements UndoableCommandInterface{
     private int offset;
     MouseModeCommandInterface tool;
     private List<MouseModeCommandDraw> clipBoard = new ArrayList<>();
-    private List<MouseModeCommandDraw> shapesToPaste = new ArrayList<>();
+    private List<MouseModeCommandDraw> pastedShapes = new ArrayList<>();
 
     public Paste() {
         this.offset = 50;
@@ -25,7 +25,7 @@ public class Paste implements UndoableCommandInterface{
             var shapeCopy = shape.copy();
             shapeCopy.setPoint1(new Point((shape.getPoint1().getX() + offset), (shape.getPoint1().getY()) + offset));
             shapeCopy.setPoint2(new Point((shape.getPoint2().getX() + offset), (shape.getPoint2().getY()) + offset));
-            shapesToPaste.add(shapeCopy);
+            pastedShapes.add(shapeCopy);
             shapeCopy.draw();
             ShapeList.shapeList.push(shapeCopy);
 //            shape.draw();
@@ -38,11 +38,12 @@ public class Paste implements UndoableCommandInterface{
 
     @Override
     public void undo() {
-        Iterator<MouseModeCommandDraw> iterator = this.shapesToPaste.iterator();
+        Iterator<MouseModeCommandDraw> iterator = this.pastedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shape.undo();
         }
+        pastedShapes.clear();
 
     }
 

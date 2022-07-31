@@ -71,7 +71,12 @@ public class CreateTriangle extends MouseModeCommandDraw {
 
     @Override
     public MouseModeCommandDraw copy() {
-        return null;
+        var copy = new CreateTriangle(appState, paintCanvas, history, shapeList);
+        copy.color = this.color;
+        copy.secondaryColor = this.secondaryColor;
+        copy.state = this.state;
+        copy.shadingType = this.shadingType;
+        return copy;
     }
 
 }
