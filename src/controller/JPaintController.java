@@ -1,8 +1,6 @@
 package controller;
 
-import canvas.History;
-import canvas.RedoCommand;
-import canvas.UndoCommand;
+import canvas.*;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IEventCallback;
@@ -32,5 +30,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> new UndoCommand(history).execute());
         uiModule.addEvent(EventName.REDO, () -> new RedoCommand(history).execute());
+        uiModule.addEvent(EventName.COPY, () -> new Copy().execute());
+        uiModule.addEvent(EventName.PASTE, () -> new Paste().execute());
     }
 }

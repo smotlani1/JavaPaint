@@ -57,18 +57,4 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
 
 
 
-//    @Override
-//    public void onMousePressed() {}
-//    @Override
-//    public void onMouseClicked() {}
-
-//        Iterator<MouseModeCommandDraw> it = shapeList.getShapeList().iterator();
-//        while (it.hasNext()) {
-//            it.next();
-//
-
-//        }
-
-
-
 
