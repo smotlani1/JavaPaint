@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class ShapeList {
-    public Deque<MouseModeCommandDraw> shapeList = new ArrayDeque<>();
+    static public Deque<MouseModeCommandDraw> shapeList = new ArrayDeque<>();
 
     public Deque<MouseModeCommandDraw> getShapeList() {
         return shapeList;

@@ -90,4 +90,13 @@ public class CreateRectangle extends MouseModeCommandDraw {
 //        graphics2d.setColor(color);
 //        graphics2d.fillRect(getStartX(), getStartY(), getWidth(), getHeight());
     }
+
+    public MouseModeCommandDraw copy() {
+        var copy = new CreateRectangle(appState, paintCanvas, history, shapeList);
+        copy.color = this.color;
+        copy.secondaryColor = this.secondaryColor;
+        copy.state = this.state;
+        copy.shadingType = this.shadingType;
+        return copy;
+    }
 }

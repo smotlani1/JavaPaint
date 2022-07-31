@@ -69,4 +69,9 @@ public class CreateTriangle extends MouseModeCommandDraw {
 
     }
 
+    @Override
+    public MouseModeCommandDraw copy() {
+        return null;
+    }
+
 }

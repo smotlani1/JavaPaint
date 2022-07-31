@@ -88,4 +88,9 @@ public class CreateEllipse extends MouseModeCommandDraw{
         this.state.draw();
 
     }
+
+    @Override
+    public MouseModeCommandDraw copy() {
+        return null;
+    }
 }

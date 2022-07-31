@@ -51,6 +51,7 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
 
 
     public abstract void draw();
+    public abstract MouseModeCommandDraw copy();
 }
 
 
