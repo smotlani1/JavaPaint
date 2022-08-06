@@ -9,6 +9,7 @@ public class RectangleAbstract {
     int width;
     int height;
     PaintCanvasBase paintCanvas;
+    protected boolean selected = false;
 
     public RectangleAbstract(int startX, int startY, int width, int height, PaintCanvasBase paintCanvas) {
         this.startX = startX;

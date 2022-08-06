@@ -1,6 +1,7 @@
 package canvas;
 
 import model.persistance.ApplicationState;
+import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
 
 import java.util.ArrayList;
@@ -22,16 +23,24 @@ public class MouseModeCommandSelect implements MouseModeCommandInterface {
 
     @Override
     public void execute() {
-        selectedShapes.clear();
+        if(selectedShapes != null) {
+            Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
+            while (iterator.hasNext()) {
+                MouseModeCommandDraw shape = iterator.next();
+                shape.setSelected(false);
+            }
+            selectedShapes.clear();
+        }
         getSelectedObjects();
 
         if(selectedShapes != null) {
-            System.out.println(selectedShapes);
+            Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
+            while (iterator.hasNext()) {
+                MouseModeCommandDraw shape = iterator.next();
+                shape.setSelected(true);
+            }
+            paintCanvas.paint(paintCanvas.getGraphics2D());
         }
-        else {
-            System.out.println("all objects deselected");
-        }
-
 
     }
 

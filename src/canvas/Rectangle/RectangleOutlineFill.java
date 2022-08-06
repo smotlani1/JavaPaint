@@ -14,6 +14,7 @@ public class RectangleOutlineFill extends RectangleAbstract{
     int height;
     Color color;
     Color secondaryColor;
+    boolean selected = false;
 
     public RectangleOutlineFill(Color color, Color secondary, int startX, int startY, int width, int height, PaintCanvasBase paintCanvas) {
         super(startX, startY, width, height, paintCanvas);
@@ -33,5 +34,12 @@ public class RectangleOutlineFill extends RectangleAbstract{
         graphics2d.fillRect(startX, startY, width, height);
         graphics2d.setColor(secondaryColor);
         graphics2d.drawRect(startX, startY, width, height);
+        if (selected == true) {
+            graphics2d.setColor(Color.BLACK);
+            float dash1[] = {10.0f};
+            Stroke dashed = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER , 10.0f, dash1, 0.0f);
+            graphics2d.setStroke(dashed);
+            graphics2d.drawRect(startX - 3, startY - 3, width + 6, height + 6);
+        }
     }
 }

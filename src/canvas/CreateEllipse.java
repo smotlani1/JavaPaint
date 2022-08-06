@@ -15,7 +15,7 @@ import java.awt.*;
 public class CreateEllipse extends MouseModeCommandDraw{
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
-
+    Graphics2D graphics2d;
     EllipseAbstract state;
     ShapeShadingType shadingType;
 
@@ -23,6 +23,7 @@ public class CreateEllipse extends MouseModeCommandDraw{
     Color secondaryColor;
     Point point1;
     Point point2;
+    boolean selected = false;
 
     public CreateEllipse(ApplicationState appState, PaintCanvasBase paintCanvas, History history, ShapeList shapeList) {
         super(appState, paintCanvas, history, shapeList);
@@ -84,6 +85,13 @@ public class CreateEllipse extends MouseModeCommandDraw{
 
     @Override
     public void draw() {
+        if (selected == true) {
+            graphics2d = paintCanvas.getGraphics2D();
+            float dash1[] = {10.0f};
+            Stroke dashed = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);
+            graphics2d.setStroke(dashed);
+            graphics2d.drawOval(this.getStartX() - 3, this.getStartY() - 3, this.getWidth() + 6, this.getHeight() + 6);
+        }
         setState();
         this.state.draw();
 
@@ -97,5 +105,10 @@ public class CreateEllipse extends MouseModeCommandDraw{
         copy.state = this.state;
         copy.shadingType = this.shadingType;
         return copy;
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

@@ -11,9 +11,10 @@ import java.awt.*;
 public class CreateTriangle extends MouseModeCommandDraw {
     ApplicationState appState;
     PaintCanvasBase paintCanvas;
-//    Graphics2D graphics2d;
+    Graphics2D graphics2d;
     TriangleAbstract state;
     ShapeShadingType shadingType;
+    boolean selected = false;
 
     Color color;
     Color secondaryColor;
@@ -28,6 +29,9 @@ public class CreateTriangle extends MouseModeCommandDraw {
         this.color = appState.getActivePrimaryColor().getColor();
     }
     private void setState() {
+//        if (selectState == true) {
+//
+//        }
         if (shadingType == ShapeShadingType.FILLED_IN){
             this.state = new TriangleFilled(color, point1, point2, paintCanvas);
         }
@@ -64,6 +68,13 @@ public class CreateTriangle extends MouseModeCommandDraw {
 
     @Override
     public void draw() {
+        if (selected == true) {
+            graphics2d = paintCanvas.getGraphics2D();
+            float dash1[] = {10.0f};
+            Stroke dashed = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);
+            graphics2d.setStroke(dashed);
+            graphics2d.drawPolygon(new int[]{point1.getX(), point2.getX(), point1.getX()}, new int[]{point1.getY(), point2.getY(), point2.getY()}, 3);
+        }
         setState();
         this.state.draw();
 
@@ -77,6 +88,11 @@ public class CreateTriangle extends MouseModeCommandDraw {
         copy.state = this.state;
         copy.shadingType = this.shadingType;
         return copy;
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
 }
