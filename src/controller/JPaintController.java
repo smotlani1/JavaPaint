@@ -32,5 +32,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.REDO, () -> new RedoCommand(history).execute());
         uiModule.addEvent(EventName.COPY, () -> new Copy().execute());
         uiModule.addEvent(EventName.PASTE, () -> new Paste().execute());
+        uiModule.addEvent(EventName.DELETE, () -> new Delete().execute());
     }
 }

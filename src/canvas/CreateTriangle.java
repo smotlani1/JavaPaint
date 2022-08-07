@@ -73,7 +73,7 @@ public class CreateTriangle extends MouseModeCommandDraw {
             float dash1[] = {10.0f};
             Stroke dashed = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);
             graphics2d.setStroke(dashed);
-            graphics2d.drawPolygon(new int[]{point1.getX(), point2.getX(), point1.getX()}, new int[]{point1.getY(), point2.getY(), point2.getY()}, 3);
+            graphics2d.drawPolygon(new int[]{point1.getX()-5, point2.getX()+20, point1.getX()-5}, new int[]{point1.getY()-10, point2.getY()+5, point2.getY()+5}, 3);
         }
         setState();
         this.state.draw();

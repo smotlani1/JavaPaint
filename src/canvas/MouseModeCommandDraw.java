@@ -38,7 +38,7 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
     }
     @Override
     public void undo() {
-        shapeList.removeShape();
+        shapeList.removeShape(this);
         paintCanvas.paint(paintCanvas.getGraphics2D());
     }
 

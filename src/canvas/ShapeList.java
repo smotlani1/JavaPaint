@@ -14,8 +14,8 @@ public class ShapeList {
         shapeList.push(shape);
     }
 
-    public MouseModeCommandDraw removeShape() {
+    public void removeShape(MouseModeCommandDraw shape) {
 
-        return shapeList.pop();
+        shapeList.remove(shape);
     }
 }
