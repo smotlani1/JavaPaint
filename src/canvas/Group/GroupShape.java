@@ -1,9 +1,7 @@
 package canvas.Group;
-
 import canvas.*;
 import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +12,6 @@ public class GroupShape extends MouseModeCommandDraw {
     private List<MouseModeCommandDraw> groupShapes = new ArrayList<>();
     PaintCanvasBase paintCanvas;
     Graphics2D graphics2d;
-
     Point point1;
     Point point2;
 
@@ -25,7 +22,6 @@ public class GroupShape extends MouseModeCommandDraw {
         this.setPoint1(this.getMinPoint());
         this.setPoint2(this.getMaxPoint());
     }
-
 
     public void execute() {
         Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
@@ -40,11 +36,7 @@ public class GroupShape extends MouseModeCommandDraw {
         MouseModeCommandSelect.selectedShapes.add(this);
         ShapeList.shapeList.add(this);
         paintCanvas.paint(paintCanvas.getGraphics2D());
-
-//        this.draw();
-
     }
-
     @Override
     public void draw() {
         if (selected == true) {
@@ -61,7 +53,6 @@ public class GroupShape extends MouseModeCommandDraw {
             shape.draw();
         }
     }
-
     @Override
     public void undo() {
         Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
@@ -74,7 +65,6 @@ public class GroupShape extends MouseModeCommandDraw {
         System.out.println(ShapeList.shapeList);
         paintCanvas.paint(paintCanvas.getGraphics2D());
     }
-
     @Override
     public MouseModeCommandDraw copy() {
         var copy = new GroupShape(paintCanvas);
@@ -85,15 +75,11 @@ public class GroupShape extends MouseModeCommandDraw {
             copy.groupShapes.add(shape.copy());
         }
         return copy;
-//        return null;
     }
-
     @Override
     public void setSelected(boolean selected) {
         this.selected = selected;
-
     }
-
     private Point getMinPoint(){
         Integer minX = Integer.MAX_VALUE;
         Integer minY = Integer.MAX_VALUE;
@@ -105,7 +91,6 @@ public class GroupShape extends MouseModeCommandDraw {
         }
         return new Point(minX, minY);
     }
-
     private Point getMaxPoint(){
         int maxX = 0;
         int maxY = 0;
@@ -117,19 +102,15 @@ public class GroupShape extends MouseModeCommandDraw {
         }
         return new Point(maxX, maxY);
     }
-
     private int getWidth() {
         return Math.abs(point2.getX()-point1.getX());
     }
-
     private int getHeight(){
         return Math.abs(point2.getY()-point1.getY());
     }
-
     @Override
     public void setPoint1(Point point) {
         if (point1 != null) {
-
             int x = point.getX() - getPoint1().getX();
             int y = point.getY() - getPoint1().getY();
             Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
@@ -138,10 +119,8 @@ public class GroupShape extends MouseModeCommandDraw {
                 shape.setPoint1(new Point((shape.getPoint1().getX() + x), (shape.getPoint1().getY()) + y));
             }
         }
-
         this.point1 = point;
     }
-
     @Override
     public void setPoint2(Point point) {
         if (point2 != null) {
@@ -155,12 +134,10 @@ public class GroupShape extends MouseModeCommandDraw {
         }
         this.point2 = point;
     }
-
     @Override
     public Point getPoint1() {
         return this.point1;
     }
-
     @Override
     public Point getPoint2() {
         return this.point2;
