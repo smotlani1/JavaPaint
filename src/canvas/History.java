@@ -16,7 +16,7 @@ import java.util.Stack;
 
 
 public class History {
-    private static final Stack<UndoableCommandInterface> undoStack = new Stack<UndoableCommandInterface>();
+    public static final Stack<UndoableCommandInterface> undoStack = new Stack<UndoableCommandInterface>();
     private static final Stack<UndoableCommandInterface> redoStack = new Stack<UndoableCommandInterface>();
 
     public static void push(UndoableCommandInterface cmd) {

@@ -95,6 +95,7 @@ public class CreateRectangle extends MouseModeCommandDraw {
         }
         setState();
         this.state.draw();
+
 //        graphics2d = paintCanvas.getGraphics2D();
 //        graphics2d.setColor(color);
 //        graphics2d.fillRect(getStartX(), getStartY(), getWidth(), getHeight());
@@ -106,6 +107,8 @@ public class CreateRectangle extends MouseModeCommandDraw {
         copy.secondaryColor = this.secondaryColor;
         copy.state = this.state;
         copy.shadingType = this.shadingType;
+        copy.setPoint1(this.getPoint1());
+        copy.setPoint2(this.getPoint2());
         return copy;
     }
 

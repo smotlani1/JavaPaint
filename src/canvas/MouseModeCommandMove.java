@@ -36,7 +36,7 @@ public class MouseModeCommandMove implements UndoableCommandInterface {
     }
 
     private void transpose(int x, int y) {
-        Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
+        Iterator<MouseModeCommandDraw> iterator = MouseModeCommandSelect.selectedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shape.setPoint1(new Point((shape.getPoint1().getX() + x), (shape.getPoint1().getY()) + y));
@@ -45,7 +45,7 @@ public class MouseModeCommandMove implements UndoableCommandInterface {
     }
     @Override
     public void undo() {
-        Iterator<MouseModeCommandDraw> iterator = this.selectedShapes.iterator();
+        Iterator<MouseModeCommandDraw> iterator = MouseModeCommandSelect.selectedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shape.setPoint1(new Point((shape.getPoint1().getX() - xDiff), (shape.getPoint1().getY()) -yDiff));

@@ -104,6 +104,8 @@ public class CreateEllipse extends MouseModeCommandDraw{
         copy.secondaryColor = this.secondaryColor;
         copy.state = this.state;
         copy.shadingType = this.shadingType;
+        copy.setPoint1(this.getPoint1());
+        copy.setPoint2(this.getPoint2());
         return copy;
     }
 

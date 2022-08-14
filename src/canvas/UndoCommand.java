@@ -9,7 +9,6 @@ public class UndoCommand implements MouseModeCommandInterface{
     @Override
     public void execute() {
         history.pop().undo();
-
     }
 }
 

@@ -25,7 +25,9 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
         this.history = history;
         this.shapeList = shapeList;
     }
-
+    public MouseModeCommandDraw(PaintCanvasBase paintCanvas) {
+        this.paintCanvas = paintCanvas;
+    }
 
     @Override
     public void execute() {
@@ -38,7 +40,7 @@ public abstract class MouseModeCommandDraw implements UndoableCommandInterface{
     }
     @Override
     public void undo() {
-        shapeList.removeShape(this);
+        ShapeList.shapeList.remove(this);
         paintCanvas.paint(paintCanvas.getGraphics2D());
     }
 

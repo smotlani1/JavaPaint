@@ -1,6 +1,7 @@
 package canvas;
 
 import model.persistance.Point;
+import view.interfaces.PaintCanvasBase;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,10 +12,13 @@ public class Paste implements UndoableCommandInterface{
     MouseModeCommandInterface tool;
     private List<MouseModeCommandDraw> clipBoard = new ArrayList<>();
     private List<MouseModeCommandDraw> pastedShapes = new ArrayList<>();
+    private PaintCanvasBase paintCanvas;
 
-    public Paste() {
+    public Paste(PaintCanvasBase paintCanvas) {
         this.offset = 50;
         this.clipBoard.addAll(Copy.clipBoard);
+        this.paintCanvas = paintCanvas;
+        History.push(this);
     }
 
     @Override
@@ -31,7 +35,7 @@ public class Paste implements UndoableCommandInterface{
 //            shape.draw();
 //            ShapeList.shapeList.push(shape);
         }
-        History.push(this);
+
         System.out.println("Pasted");
 
     }
@@ -41,8 +45,9 @@ public class Paste implements UndoableCommandInterface{
         Iterator<MouseModeCommandDraw> iterator = this.pastedShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
-            shape.undo();
+            ShapeList.shapeList.remove(shape);
         }
+        paintCanvas.paint(paintCanvas.getGraphics2D());
         pastedShapes.clear();
 
     }

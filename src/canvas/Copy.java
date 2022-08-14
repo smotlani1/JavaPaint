@@ -13,6 +13,6 @@ public class Copy {
     public void execute() {
         clipBoard.clear();
         clipBoard.addAll(MouseModeCommandSelect.selectedShapes);
-        System.out.println("Copied");
+        System.out.println(clipBoard);
     }
 }

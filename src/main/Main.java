@@ -21,7 +21,7 @@ public class Main {
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState, history);
+        IJPaintController controller = new JPaintController(uiModule, appState, history, paintCanvas);
         controller.setup();
 
         clickHandler clickHandler = new clickHandler(appState, paintCanvas, history, shapeList);
