@@ -40,3 +40,4 @@ canvas.CreateTriangle<br/>
 
 
 ## Bugs/Issues
+1.The paintcanvase.repaint () method did not work. My work around to this was to draw a large white rectangle to cover the canvas every time paintCanvase.paint() is called. The application still works as expected visually. 
