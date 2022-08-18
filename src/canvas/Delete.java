@@ -17,7 +17,7 @@ public class Delete implements UndoableCommandInterface{
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
             shapesToDelete.add(shape);
-            shape.undo();
+            shape.delete();
         }
         History.push(this);
 //        paintCanvas.paint(paintCanvas.getGraphics2D());

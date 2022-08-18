@@ -1,8 +1,8 @@
 package controller;
 
 import canvas.*;
+//import canvas.Group.Group;
 import canvas.Group.Group;
-import canvas.Group.GroupShape;
 import canvas.Group.Ungroup;
 import model.interfaces.IApplicationState;
 import view.EventName;

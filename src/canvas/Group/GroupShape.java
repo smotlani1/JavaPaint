@@ -9,34 +9,20 @@ import java.util.List;
 
 public class GroupShape extends MouseModeCommandDraw {
     private boolean selected;
-    private List<MouseModeCommandDraw> groupShapes = new ArrayList<>();
+    private List<MouseModeCommandDraw> groupShapes;
     PaintCanvasBase paintCanvas;
     Graphics2D graphics2d;
     Point point1;
     Point point2;
 
-    public GroupShape(PaintCanvasBase paintCanvas) {
+    public GroupShape(PaintCanvasBase paintCanvas, List<MouseModeCommandDraw> groupShapes) {
         super(paintCanvas);
         this.paintCanvas = paintCanvas;
-        this.groupShapes.addAll(MouseModeCommandSelect.selectedShapes);
+        this.groupShapes = groupShapes;
         this.setPoint1(this.getMinPoint());
         this.setPoint2(this.getMaxPoint());
     }
 
-    public void execute() {
-        Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
-        while (iterator.hasNext()) {
-            MouseModeCommandDraw shape = iterator.next();
-            shape.setSelected(false);
-            ShapeList.shapeList.remove(shape);
-        }
-        System.out.println(groupShapes);
-        MouseModeCommandSelect.selectedShapes.clear();
-        this.setSelected(true);
-        MouseModeCommandSelect.selectedShapes.add(this);
-        ShapeList.shapeList.add(this);
-        paintCanvas.paint(paintCanvas.getGraphics2D());
-    }
     @Override
     public void draw() {
         if (selected == true) {
@@ -54,20 +40,14 @@ public class GroupShape extends MouseModeCommandDraw {
         }
     }
     @Override
-    public void undo() {
-        Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
-        while (iterator.hasNext()) {
-            MouseModeCommandDraw shape = iterator.next();
-            ShapeList.shapeList.add(shape);
-        }
+    public void delete() {
         ShapeList.shapeList.remove(this);
-        this.setSelected(false);
-        System.out.println(ShapeList.shapeList);
         paintCanvas.paint(paintCanvas.getGraphics2D());
     }
+
     @Override
     public MouseModeCommandDraw copy() {
-        var copy = new GroupShape(paintCanvas);
+        var copy = new GroupShape(paintCanvas, groupShapes);
         copy.groupShapes.clear();
         Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
         while (iterator.hasNext()) {
