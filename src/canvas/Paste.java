@@ -50,12 +50,18 @@ public class Paste implements UndoableCommandInterface{
             ShapeList.shapeList.remove(shape);
         }
         paintCanvas.paint(paintCanvas.getGraphics2D());
-        pastedShapes.clear();
+//        pastedShapes.clear();
 
     }
 
     @Override
     public void redo() {
-        this.execute();
+        Iterator<MouseModeCommandDraw> iterator = pastedShapes.iterator();
+        while (iterator.hasNext()) {
+            MouseModeCommandDraw shape = iterator.next();
+            shape.draw();
+            ShapeList.shapeList.push(shape);
+
+        }
     }
 }
