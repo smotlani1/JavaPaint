@@ -40,6 +40,5 @@ public class Ungroup implements UndoableCommandInterface {
     @Override
     public void redo() {
         this.execute();
-        System.out.println(History.undoStack);
     }
 }
