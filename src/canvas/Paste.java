@@ -3,6 +3,7 @@ package canvas;
 import model.persistance.Point;
 import view.interfaces.PaintCanvasBase;
 
+import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Paste implements UndoableCommandInterface{
             pastedShapes.add(shapeCopy);
             shapeCopy.draw();
             ShapeList.shapeList.push(shapeCopy);
+            System.out.println(ShapeList.shapeList);
 //            shape.draw();
 //            ShapeList.shapeList.push(shape);
         }

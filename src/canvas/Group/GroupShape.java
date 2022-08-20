@@ -46,13 +46,13 @@ public class GroupShape extends MouseModeCommandDraw {
 
     @Override
     public MouseModeCommandDraw copy() {
-        var copy = new GroupShape(paintCanvas, groupShapes);
-        copy.groupShapes.clear();
+        List<MouseModeCommandDraw> copyGroupShapes = new ArrayList<>();
         Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
         while (iterator.hasNext()) {
             MouseModeCommandDraw shape = iterator.next();
-            copy.groupShapes.add(shape.copy());
+            copyGroupShapes.add(shape.copy());
         }
+        var copy = new GroupShape(paintCanvas, copyGroupShapes);
         return copy;
     }
     @Override
