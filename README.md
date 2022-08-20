@@ -42,4 +42,5 @@ canvas.CreateTriangle<br/>
 ## Bugs/Issues
 1.The paintcanvase.repaint () method did not work. My work around to this was to draw a large white rectangle to cover the canvas every time paintCanvase.paint() is called. The application still works as expected visually <br/>
 2 When undoing a group, the application has no visual confirmation of the ungrouping. Upon selection, you can see the ungrouping was completed. <br/>
-3 Occasionally the undo button has to be double-clicked in order for it to work. 
+3 Occasionally the undo button has to be double-clicked in order for it to work.
+4 When undoing/redoing the ungroup command a couple times, it throws off the undo for the rest of the application. Somewhere in the code, create shapes get duplicated in the Shapelist. A workaround I could've implemented is to use a hashmap or set data structure to store only unique shapes, and not duplicates. 
