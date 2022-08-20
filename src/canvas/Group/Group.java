@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Group implements UndoableCommandInterface {
     PaintCanvasBase paintCanvas;
-    private List<MouseModeCommandDraw> groupShapes = new ArrayList<>();
+    List<MouseModeCommandDraw> groupShapes = new ArrayList<>();
     GroupShape groupShape;
 
     public Group(PaintCanvasBase paintCanvas) {
@@ -27,7 +27,6 @@ public class Group implements UndoableCommandInterface {
             shape.setSelected(false);
             ShapeList.shapeList.remove(shape);
         }
-        System.out.println(groupShapes);
         MouseModeCommandSelect.selectedShapes.clear();
         groupShape.setSelected(true);
         MouseModeCommandSelect.selectedShapes.add(groupShape);
@@ -37,19 +36,14 @@ public class Group implements UndoableCommandInterface {
 
     @Override
     public void undo() {
-        Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
-        while (iterator.hasNext()) {
-            MouseModeCommandDraw shape = iterator.next();
-            ShapeList.shapeList.add(shape);
-        }
-        ShapeList.shapeList.remove(groupShape);
-        groupShape.setSelected(false);
+        groupShape.undo();
+        System.out.println(History.undoStack);
         System.out.println(ShapeList.shapeList);
-        paintCanvas.paint(paintCanvas.getGraphics2D());
     }
 
     @Override
     public void redo() {
         this.execute();
+        System.out.println(History.undoStack);
     }
 }

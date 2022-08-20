@@ -31,7 +31,6 @@ public class GroupShape extends MouseModeCommandDraw {
             Stroke dashed = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);
             graphics2d.setStroke(dashed);
             graphics2d.drawRect(this.getPoint1().getX() - 3, this.getPoint1().getY() - 3, this.getWidth() + 6, this.getHeight() + 6);
-            System.out.println(MouseModeCommandSelect.selectedShapes);
         }
         Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
         while (iterator.hasNext()) {
@@ -55,6 +54,20 @@ public class GroupShape extends MouseModeCommandDraw {
             copy.groupShapes.add(shape.copy());
         }
         return copy;
+    }
+    @Override
+    public void undo() {
+        Iterator<MouseModeCommandDraw> iterator = groupShapes.iterator();
+        while (iterator.hasNext()) {
+            MouseModeCommandDraw shape = iterator.next();
+            ShapeList.shapeList.add(shape);
+            shape.setSelected(true);
+            MouseModeCommandSelect.selectedShapes.add(shape);
+        }
+        ShapeList.shapeList.remove(this);
+        this.setSelected(false);
+        MouseModeCommandSelect.selectedShapes.remove(this);
+        paintCanvas.paint(paintCanvas.getGraphics2D());
     }
     @Override
     public void setSelected(boolean selected) {

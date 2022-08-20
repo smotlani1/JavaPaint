@@ -41,7 +41,6 @@ public class MouseModeCommandSelect implements MouseModeCommandInterface {
             }
             paintCanvas.paint(paintCanvas.getGraphics2D());
         }
-        System.out.println(selectedShapes);
 
     }
 
